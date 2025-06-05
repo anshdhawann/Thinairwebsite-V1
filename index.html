@@ -354,7 +354,234 @@
 }
 
 
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 768px) {
 
+        /* General adjustments */
+        main {
+            padding: 20px; /* Reduce main padding on smaller screens */
+        }
+
+        main > section {
+             margin-bottom: 30px; /* Slightly reduce margin between sections */
+        }
+
+        h1 {
+            font-size: 36px; /* Smaller headings */
+        }
+
+        h2 {
+            font-size: 18px; /* Smaller subheadings */
+        }
+
+        p, ul {
+            font-size: 13px; /* Slightly smaller text */
+        }
+
+        /* Header */
+        header {
+            flex-direction: column; /* Stack header items vertically */
+            padding: 15px 20px; /* Reduce header padding */
+            align-items: flex-start; /* Align items to the left */
+            gap: 15px; /* Add space between stacked header items */
+        }
+
+        .header-left {
+            width: 100%; /* Make logo/title full width */
+            justify-content: center; /* Center logo and text */
+             gap: 5px; /* Reduce space between logo and text */
+        }
+         .header-left img {
+             height: 20px; /* Smaller logo */
+             width: auto; /* Maintain aspect ratio */
+         }
+         .header-left span {
+             font-size: 16px; /* Smaller header title font */
+         }
+
+
+        nav {
+            flex-direction: column; /* Stack nav links vertically */
+            width: 100%; /* Make nav full width */
+            text-align: center; /* Center nav links */
+            gap: 10px; /* Reduce space between nav links */
+            margin-top: 10px; /* Add some space below logo */
+        }
+
+        nav a {
+             font-size: 16px; /* Smaller nav links font */
+        }
+
+        .sites-dropdown {
+            width: 100%; /* Make dropdown text area full width */
+            text-align: center; /* Center dropdown text */
+            margin-top: 10px; /* Add space below nav */
+        }
+
+        .dropdown-menu {
+            /* Reposition dropdown menu relative to the centered parent */
+            left: 50%;
+            transform: translateX(-50%); /* Center the dropdown itself */
+            right: auto; /* Override original right: 0 */
+            min-width: 180px; /* Smaller minimum width for dropdown */
+            font-size: 16px; /* Smaller dropdown link font */
+        }
+         .dropdown-menu a {
+             font-size: 16px; /* Smaller dropdown link font */
+         }
+
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 0; /* Remove padding from the flex container */
+            gap: 15px; /* Slightly smaller gap between items */
+             justify-content: space-around; /* Distribute items more evenly */
+        }
+
+        .portfolio-item {
+             /* Adjust width for smaller screens - aiming for 2 columns */
+             width: calc(50% - 7.5px); /* 50% width minus half of the gap (15px total gap) */
+             padding: 15px; /* Reduce padding inside item */
+        }
+
+        .portfolio-item img {
+            width: 80px; /* Smaller logo */
+            height: 60px; /* Smaller logo */
+            margin-bottom: 8px; /* Reduced margin below logo */
+        }
+
+        /* Adjust for very small screens if two columns are still too wide */
+        @media (max-width: 480px) {
+            .portfolio-item {
+                 width: 100%; /* Single column layout */
+                 max-width: 200px; /* Keep max width if needed */
+            }
+             .portfolio-section {
+                 justify-content: center; /* Center single column */
+             }
+        }
+
+
+        /* Team Section */
+         #team > div { /* Target the flex container div for team members */
+             gap: 20px; /* Slightly smaller gap */
+             justify-content: center; /* Center team items */
+         }
+        #team > div > a { /* Target the team member links (the flex items) */
+            /* Override the inline width: 200px for responsiveness */
+            width: calc(50% - 10px) !important; /* Two columns with 20px gap */
+            max-width: 200px; /* Maintain max width */
+        }
+         /* Adjust team layout for very small screens (< 480px) */
+         @media (max-width: 480px) {
+             #team > div {
+                 gap: 15px; /* Even smaller gap */
+             }
+             #team > div > a {
+                  width: 100% !important; /* Single column */
+                  max-width: 200px; /* Keep max width */
+                  margin: 0 auto; /* Center the block item */
+             }
+         }
+
+
+        /* Media Section (Carousel) */
+         #media {
+             padding: 20px 0; /* Reduced top/bottom padding */
+         }
+        #media > h1 {
+             padding: 0 20px; /* Match main padding */
+             font-size: 30px; /* Smaller heading */
+        }
+
+         .carousel-container {
+             /* Adjust padding slightly if needed, keeping it for the scroll view */
+             padding: 0 10px;
+         }
+
+         .carousel-track {
+             gap: 15px; /* Reduced gap between cards */
+         }
+
+        .carousel-card {
+            /* Make the card width relative to the viewport minus space on the sides */
+            flex-basis: calc(100vw - 40px); /* Example: full viewport width minus 20px padding on each side (total 40px) */
+            width: auto; /* Allow flex-basis to control width */
+        }
+
+        /* Carousel Arrow styles (already set, just ensure positioning works) */
+        .carousel-arrow {
+             width: 36px; /* Smaller button */
+             height: 36px; /* Smaller button */
+             padding: 8px; /* Adjust padding */
+        }
+         .carousel-arrow img {
+              width: 16px; /* Smaller icon */
+              height: 16px; /* Smaller icon */
+         }
+
+         #carousel-left { left: 5px; } /* Closer to edge */
+         #carousel-right { right: 5px; } /* Closer to edge */
+
+         /* Gradient fade width */
+        .carousel-container::before,
+        .carousel-container::after {
+             width: 30px; /* Smaller fade area */
+        }
+
+
+        /* Contact Section */
+         /* Consider adjusting margin-bottom on the heading section within contact */
+         #contact section:first-child {
+              margin-bottom: 20px; /* Or remove negative margin */
+         }
+
+
+        /* Prefooter */
+        .prefooter {
+             flex-direction: column; /* Stack prefooter items */
+             padding: 15px 20px; /* Reduced padding */
+             gap: 15px; /* Add space between stacked items */
+        }
+         .prefooter-left {
+             width: 100%; /* Make logo/title full width */
+             justify-content: center; /* Center logo and text */
+             gap: 5px; /* Reduce gap */
+         }
+         .prefooter-left img {
+              height: 20px; /* Smaller logo */
+              width: auto; /* Maintain aspect ratio */
+         }
+         .prefooter-left span {
+              font-size: 16px; /* Smaller title font */
+         }
+         .prefooter > div:nth-child(2) { /* Target the newsletter link div */
+             width: 100%; /* Make link text full width */
+             text-align: center; /* Center link text */
+         }
+         .prefooter > div:nth-child(3) { /* Target the empty placeholder div */
+             display: none; /* Hide the placeholder div on mobile */
+         }
+
+
+         /* Footer */
+         footer {
+             padding: 15px 20px; /* Reduced padding */
+         }
+         .social-links {
+             margin: 8px 0; /* Adjusted margin */
+         }
+         .social-link img {
+             width: 18px; /* Smaller icons */
+             height: 18px; /* Smaller icons */
+         }
+         .copyright {
+             font-size: 9px; /* Slightly smaller copyright */
+             margin-top: 10px; /* Adjusted margin */
+         }
+
+    }
+    
   </style>
 </head>
 <body>
