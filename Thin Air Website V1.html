@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thin Air Labs</title>
+  <style>
+
+    /* Enable smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #003b5c;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      color: #374151;
+    }
+
+    header {
+      background: #000;
+      color: white;
+      padding: 24px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-left img {
+      height: 24px;
+    }
+
+    .header-left span {
+      font-size: 18px;
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    nav a.active {
+      border-bottom: 2px solid white;
+      padding-bottom: 2px;
+    }
+
+    .sites-dropdown {
+      position: relative;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: white;
+      color: black;
+      border-radius: 8px;
+      padding: 10px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      min-width: 220px;
+      z-index: 100;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 18px;
+      color: black;
+      text-decoration: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f0f0f0;
+    }
+
+    main {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 40px 30px; /* Adjust padding as needed for inner sections */
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.1),
+                  0 0 0 1px rgba(255, 255, 255, 0.2);
+    }
+
+     /* Added margin between main sections for better separation */
+    main > section {
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 300;
+      color: black;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #003b5c;
+      border-bottom: 1px solid #003b5c;
+      padding-bottom: 6px;
+      margin-top: 30px;
+    }
+
+    p, ul {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      color: #6d28d9;
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      background: #f8fafc;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #64748b;
+    }
+
+    .footer-links, .social-links {
+      margin: 10px 0;
+    }
+
+    .footer-link {
+      color: #4f46e5;
+      margin: 0 8px;
+      font-size: 13px;
+    }
+
+    .social-link {
+      margin: 0 10px;
+    }
+
+    .social-link img {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+    }
+
+    .copyright {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 16px;
+    }
+
+   /* Style for the container section */
+       /* Container for all portfolio items */
+.portfolio-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Each portfolio item card */
+.portfolio-item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  flex: 0 0 auto; /* Added flex property here as well */
+}
+
+/* Logo image inside each item */
+.portfolio-item img {
+  width: 100px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  padding: 8px;              /* optional: adds breathing room */
+  border-radius: 8px;        /* optional: softer look */
+  margin-bottom: 12px;
+}
+
+/* Link styling (entire item clickable if desired) */
+.portfolio-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Optional: If you wrap only the image with <a> */
+.portfolio-item a img {
+  margin-bottom: 0;
+}
+
+
+.prefooter {
+  background: #000;
+  color: white;
+  padding: 24px 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.prefooter-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prefooter-left img {
+  height: 24px;
+}
+
+.prefooter-left span {
+  font-size: 18px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  font-size: 24px;
+  background: black;
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 999;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+}
+
+
+.carousel-container {
+  display: flex; /* Keep flex */
+  overflow-x: auto; /* Keep auto overflow */
+  scroll-snap-type: x mandatory; /* Keep snapping */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  position: relative; /* Keep for pseudo-elements */
+
+  /* Padding inside the scrollable container */
+  padding: 20px;
+
+  /* Remove gap from here */
+  gap: 0;
+}
+
+/* The track needs to be the flex container for the cards */
+.carousel-track {
+    display: flex; /* Make this the flex container */
+    gap: 20px;    /* Add gap here for spacing between cards */
+    /* This will wrap the cards and be horizontally scrollable */
+}
+
+
+.carousel-card {
+  flex: 0 0 auto; /* Correct - card is flex item of .carousel-track */
+  scroll-snap-align: start;
+  width: 300px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+/* Scrollbar hiding remains on .carousel-container */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+.carousel-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Adjust padding for the media section itself */
+#media {
+  padding: 40px 0 40px 0; /* Remove horizontal padding here */
+}
+#media > h1 {
+    padding: 0 30px; /* Add padding back to the heading */
+}
+
+.carousel-arrow {
+  opacity: 0.6;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background-color: black;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  background-color: #222;
+  transform: translateY(-50%) scale(1.05);
+}
+
+#carousel-left {
+  left: 10px;
+}
+
+#carousel-right {
+  right: 10px;
+}
+
+.carousel-arrow img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+  <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/6317cbe8f470ca2eec656d47_TAL_WHITE_TRANSPARENT%20(2).png" alt="Thin Air Labs Logo" style="width: 80px; height: auto;">
+  <span>Thin Air <span style="color: #bbb;">Labs</span></span>
+</div>
+
+    <nav>
+      <a href="#portfolio" class="active">Portfolio</a>
+      <a href="#team">Team</a>
+      <a href="#media">Media</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="sites-dropdown" onclick="toggleDropdown()">
+      Thin Air Sites ▼
+      <div id="dropdown-menu" class="dropdown-menu">
+        <a href="https://www.thinairlabs.ca/services/funding-catalyst">Funding Catalyst ↗</a>
+        <a href="https://www.thinairlabs.ca/services/product-traction">Product Traction ↗</a>
+        <a href="https://linktr.ee/thinairlabspodcast">Podcast ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+
+  <main>
+    <!-- Initial Heading Section -->
+    <section style="text-align: center; margin-bottom: 0px;">
+        <h1 style="font-size: 48px; font-weight: 300; color: black;">
+            Bold <strong style="font-weight: 700;">Ideas.</strong>
+            Legendary <strong style="font-weight: 700;">Companies.</strong>
+            Backed <strong style="font-weight: 700;">Early.</strong>
+        </h1>
+        <p style="font-size: 16px; color: black;">
+            Through our venture fund and services platform, we fuel innovators across Canada and beyond.
+        </p>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <section style="text-align: left; margin-bottom: 40px;">
+            <h1 style="font-size: 48px; font-weight: 300; color: black;">
+                Our <strong style="font-weight: 700;">portfolio</strong>
+            </h1>
+            <p style="font-size: 16px; color: black;">
+                Our investments are borderless. We invest wherever we find great founders.
+            </p>
+        </section>
+
+        <section style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 30px;">
+            <div style="flex: 1; min-width: 200px;">
+                <label style="color: black; font-size: 14px;">Browse by Industry</label><br />
+                <select style="padding: 8px 12px; font-size: 16px; border: none; border-bottom: 2px solid black; background: #f8fafc; margin-top: 4px;">
+                    <option>All</option>
+                    <option>Climate</option>
+                    <option>Health</option>
+                    <option>Finance</option>
+                    <option>Real Estate</option>
+                </select>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button style="padding: 8px 16px; border: 1px solid black; background: white; cursor: pointer;">Current</button>
+                <button style="padding: 8px 16px; border: 1px solid black; background: white; cursor: pointer;">Exited</button>
+            </div>
+        </section>
+
+        <section class="portfolio-section">
+            <div class="portfolio-item">
+                <a href="https://www.arbor.eco/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389757caf972692f24c1_631f65dbb9b4265276277c4c_Gradient%2520Arbor%2520logo.webp" alt="Arbor">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.athennian.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/634731ecd2c545e1aaca025f_632a36a66e9c153c56b940e4_Athennian_Logo-p-130x130q80.webp" alt="Athennian">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.bidali.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389766d051867ca42af0_631f65f010a673989caf6e4d_Bidali%2520Logo_edited_edited.webp" alt="Bidali">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://bode.ca/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/65eb4951757a3787451683eb_Bode_Logo_Positive%403x.png" alt="Bode">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="#" target="_blank"> <!-- Note: This one had href="#" in the source -->
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/65eb4f3de5a5fa6fbf3e8e73_brightspot-horizontal.png" alt="Brightspot ">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.myclinify.com" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63ebad4b0c98eb8226b239f4_Clinify_Logo-removebg-preview.png" alt="Clinify">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.cohesic.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389763cf48863ba7a07f_631f6606b84ceaed0e6e9977_horizontal-colour-lightbg_edited.webp" alt="Cohesic">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://communo.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389710a7f73ffb0cac00_631f661c2fc8cbb97c8721aa_Communo%2520Logo%2520Horizontal%2520(black)_edited_p.webp" alt="Communo">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.dothealth.ca/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/634732b7e5d84506ec96a9e7_632a36b5a74fa6ea33c4cf99_TAL_500x500_DOT%20HEALTH_edited-p-130x130q80.webp" alt="Dot Health">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.fillipfleet.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389e589a50ced81de33b_631f66492fc8cbe59b8722fc_Logo_Full_Black_CMYK_edited_edited_edite.webp" alt="Fillip">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://fluidbiomed.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/673ba11558dd29a31e4a1dbd_fluid%20biomed%20logo.png" alt="Fluid Biomed">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.gardenloft.ca/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/673ba06b7a4c8aca8cd6a727_Garden%20Loft%20logo%20grey%20interior.png" alt="Garden Loft ">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.inqli.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473897a52017268fa6401a_631f66749087711d644e1f2d_inqli_edited_edited.webp" alt="Inqli">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://liveweb.io/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473897ee82b671dde9f545_631f668c4268145932156b0e_1iy0duYRZl0l56EiiP8cz2My8Xp1604065330053_200x200_edited.webp" alt="Liveweb">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.leankor.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/634732e9226c4a7e4a2bc44d_632a36be08053c2edc85ef6f_Leankor%20Logo_edited-p-130x130q80.webp" alt="Leankor">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://mikatahealth.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/66300dd2b3d8b2c4d8658085_Logo%20mikata%20G%20-%20no%20area.png" alt="Mikata Health">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://nanotess.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389707624f4c48fe2982_631f66c65f282db213f1d965_NanoTess%2520Logo_edited.webp" alt="Nanotess">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.nimblesci.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473340e1d9ee4b7c8c159a_632a37318485e9dbb1c83d3a_TAL_500x500_NIMBLE_edited_edited-p-130x130q80.webp" alt="Nimble Science">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.orpyx.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473898861ec85f7772bf06_631f66e0650ae273045a60d2_dd4667_48d8a54aa79746e2a4001cfb8f102614_.webp" alt="Orpyx">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.payshepherd.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473898ee82b654abe9f549_631f66f77f3c5b7ff02fcfae_Accelerate-Fund-Portfolio-Fund-III-logo-.webp" alt="PayShepherd">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://phenotips.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389807624f0a1bfe2985_631f6705732ebfbcf72df886_logo-phenotips_edited.webp" alt="Phenotips">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://provision.io/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473898cd78d72bfb847040_631f6715650ae281315618b_YyfbT636t5Spk4Vre4jEaz4o7qV1615898012271.webp" alt="Provision">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://helloquickly.com" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/63501c3a7233013898fd76fb_horizontal-coral-grey-on-transparent%402x%20(2).png" alt="Quickly">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://rehabtronics.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63473898d6960c761cac5a74_631f67272fc8cb6739872b13_RHT%2520logo%2520long.webp" alt="Rehabtronics">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://somadetect.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/6347335ef8de354fbffe20ad_632a373e9c50e3b665260bef_SomaDetect%20Logo-p-130x130q80.webp" alt="Soma Detect">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://stellaralgo.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/6347338ce1d9eea5378c18b9_632a3747dbf347f03cd9de95_Stellaralgo_edited-p-130x130q80.webp" alt="StellarAlgo">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://www.syantra.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/6347389c2245dcd3eb5aea3b_631f67354d211977b93f2cec_download_edited.webp" alt="Syantra">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://symend.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/6347339d16a5ddcb57349ac0_632a3750b5466b93e63cda5f_Symend-Logo-Tag_Grey-Green_edited-p-130x130q80.webp" alt="Symend">
+                </a>
+            </div>
+
+            <div class="portfolio-item">
+                <a href="https://tactile-ortho.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/6347389a380bb95bbfcdfa81_631f675c972de65789732e35_Tactile_Ortho_Logo_Blue_50px.webp" alt="Tactile Orthopaedics">
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://www.trueanglemedical.com/" target="_blank">
+                    <img src="https://cdn.prod.website-files.com/6317ac84724b6b6ca10d4962/634738993029c01d1c6ae2db_631f67699ff4bc4da4d5ab03_logo-full-colour-large_edited.webp" alt="True Angle">
+                </a>
+            </div>
+        </section>
+    </section>
+    <!-- Portfolio section correctly closed -->
+
+    <!-- Team Section -->
+    <section id="team">
+        <section style="text-align: left; margin-bottom: 40px;">
+            <h1 style="font-size: 48px; font-weight: 300; color: black;">
+                Our <strong style="font-weight: 700;">People</strong>
+            </h1>
+        </section>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 32px; margin-top: 40px;">
+            <a href="https://www.linkedin.com/in/jameslochrie/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/63278f28bd1127cc72d7a609_LC1_5057_edited.jpg"
+                            alt="James Lochrie"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">James Lochrie ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Investments</div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/rick-bird-78009264/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/63278f67c5878568bdefc192_LC1_5005_edited.jpg"
+                            alt="Rick Bird"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">Rick Bird ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Investments</div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/anshdhawann/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/6809198fbe38929e303689cb_ansh.png"
+                            alt="Ansh Dhawan"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">Ansh Dhawan ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Investments</div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/leahsarich/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/634752446b9932ef43633494_6328d2f322cf1fda6e420f96_Screenshot%202022-09-19%20at%205.36.49%20PM-p-500.png"
+                            alt="Leah Sarich"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">Leah Sarich ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Story</div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/katie-greene-phd-8a861759/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/634752866fba57334e4f1b68_63278fb7e6b8034cdff3c647_Katie.jpg"
+                            alt="Katie Greene"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">Katie Greene ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Operations</div>
+                </div>
+            </a>
+
+
+            <a href="https://www.linkedin.com/in/andrewbrowne2702/" target="_blank" style="text-align: center; text-decoration: none; color: black;">
+                <div style="border-radius: 16px; overflow: hidden; width: 200px;">
+                    <div style="width: 100%; height: 200px; overflow: hidden;">
+                        <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/63475229040e166ada50b973_63278f8f7c17a73db9166b94_ABheadshot-large-p-500.jpg"
+                            alt="Andrew Browne"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                    </div>
+                    <div style="padding-top: 12px; font-size: 18px; color: black;">Andrew Browne ↗</div>
+                    <div style="padding-top: 4px; font-size: 16px; color: black;">Partnerships</div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!-- Team section correctly closed -->
+
+
+    <!-- Media Section -->
+    <section id="media" style="overflow: hidden; padding: 40px 0 40px 0;"> <!-- Adjusted padding -->
+        <h1 style="font-size: 48px; font-weight: 300; color: black; margin-bottom: 20px; padding: 0 30px;"> <!-- Added padding -->
+            Latest <strong style="font-weight: 700;">Media</strong>
+        </h1>
+
+        <div style="position: relative;">
+           
+          <button id="carousel-left" class="carousel-arrow" aria-label="Scroll left">
+  <img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-left.png" alt="" />
+</button>
+
+<button id="carousel-right" class="carousel-arrow" aria-label="Scroll right">
+  <img src="https://img.icons8.com/ios-filled/50/ffffff/chevron-right.png" alt="" />
+</button>
+
+
+
+            <div class="carousel-container" id="infinite-carousel">
+                <div class="carousel-track">
+                    <!-- Card 1 -->
+                    <div class="carousel-card">
+                        <a href="https://www.avenuecalgary.com/innovators-of-the-year-2025/julian-mulia-megan-leslie/" target="_blank" style="text-decoration: none; color: inherit;">
+                            <img src="https://www.avenuecalgary.com/wp-content/uploads/2025/04/IOTY2025-6-Crop.jpg"
+                                alt="Julian Mulia and Megan Leslie, Avenue Calgary"
+                                style="width: 100%; height: 280px; object-fit: cover;" />
+                            <div style="padding: 20px;">
+                                <div style="font-size: 13px; color: black;">Portfolio News  |  May 28, 2025</div>
+                                <h3 style="font-size: 18px; margin: 10px 0; color: black;">NanoTess co-founders win Innovators of the Year 2025</h3>
+                                <p style="font-size: 14px; color: black;">Julian Mulia and Megan Leslie develop accessible chronic wound treatments improving patient outcomes and healthcare equity.</p>
+                                <span style="font-size: 14px; font-weight: 500; color: black;"><u>Read Article</u></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="carousel-card">
+                        <a href="https://betakit.com/fluid-biomed-closes-27-million-usd-series-a-to-fund-expanded-human-clinical-studies/" target="_blank" style="text-decoration: none; color: inherit;">
+                            <img src="https://cdn.betakit.com/wp-content/uploads/2024/12/Fluid-Biomed.jpg"
+                                alt="Fluid Biomed funding news"
+                                style="width: 100%; height: 280px; object-fit: cover;" />
+                            <div style="padding: 20px;">
+                                <div style="font-size: 13px; color: black;">Portfolio News  |  Dec 16, 2024</div>
+                                <h3 style="font-size: 18px; margin: 10px 0; color: black;">Fluid Biomed closes $27M Series A</h3>
+                                <p style="font-size: 14px; color: black;">Fluid Biomed secures $27M USD to advance its innovative brain stent into human trials.</p>
+                                <span style="font-size: 14px; font-weight: 500; color: black;"><u>Read Article</u></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="carousel-card">
+                        <a href="https://betakit.com/orpyx-closes-26-9-million-cad-in-growth-capital-to-fuel-us-expansion/" target="_blank" style="text-decoration: none; color: inherit;">
+                            <img src="https://www.orpyx.com/uploads/_750x9999_fit_center-center_99_none/10293/Orpyx-Management.webp"
+                                alt="Orpyx funding news"
+                                style="width: 100%; height: 280px; object-fit: cover;" />
+                            <div style="padding: 20px;">
+                                <div style="font-size: 13px; color: black;">Portfolio News  |  Oct 1, 2024</div>
+                                <h3 style="font-size: 18px; margin: 10px 0; color: black;">Orpyx closes $26.9M CAD for U.S. expansion</h3>
+                                <p style="font-size: 14px; color: black;">Orpyx expands diabetic foot ulcer prevention south of the border.</p>
+                                <span style="font-size: 14px; font-weight: 500; color: black;"><u>Read Article</u></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="carousel-card">
+                        <a href="https://www.biospace.com/press-releases/syantra-secures-4-9-million-in-series-a-1-funding-adds-dr-rick-mangat-to-board-of-directors" target="_blank" style="text-decoration: none; color: inherit;">
+                            <img src="https://smartcdn.gprod.postmedia.digital/calgaryherald/wp-content/uploads/2024/08/kristinarinker.jpg?quality=90&strip=all&w=1128&h=846&type=webp&sig=EdV3Uyq0tVsoj6JlbPqOqw"
+                                alt="Syantra funding news"
+                                style="width: 100%; height: 280px; object-fit: cover;" />
+                            <div style="padding: 20px;">
+                                <div style="font-size: 13px; color: black;">Portfolio News  |  Sep 12, 2024</div>
+                                <h3 style="font-size: 18px; margin: 10px 0; color: black;">Syantra raises $4.9M; adds board member</h3>
+                                <p style="font-size: 14px; color: black;">Syantra adds Dr. Rick Mangat to its board after new funding round.</p>
+                                <span style="font-size: 14px; font-weight: 500; color: black;"><u>Read Article</u></span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="carousel-card">
+                        <a href="/episodes/james-lochrie-101" style="text-decoration: none; color: inherit;">
+                            <img src="https://cdn.prod.website-files.com/6317ac84724b6b84c10d4962/64f758c60ff178078e3b7373_James%20_%20Thin%20Air.png"
+                                alt="James Lochrie 101"
+                                style="width: 100%; height: 280px; object-fit: cover;" />
+                            <div style="padding: 20px;">
+                                <div style="font-size: 13px; color: black;">Podcast  |  Sep 5, 2023</div>
+                                <h3 style="font-size: 18px; margin: 10px 0; color: black;">James Lochrie 101</h3>
+                                <p style="font-size: 14px; color: black;">A founder’s journey from building a billion-dollar company to backing the next wave.</p>
+                                <span style="font-size: 14px; font-weight: 500; color: black;"><u>Listen to Episode</u></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Media section correctly closed -->
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <section style="text-align: left; margin-bottom: -20px;">
+            <h1 style="font-size: 48px; font-weight: 300; color: black;">
+                <strong style="font-weight: 700;">Contact</strong> Us
+            </h1>
+        </section>
+
+        <p style="font-size: 16px; color: black;">
+            Want to know more about us? Reach out at invest@thinairlabs.ca
+        </p>
+    </section>
+    <!-- Contact section correctly closed -->
+
+</main>
+
+
+<div class="prefooter">
+  <div class="prefooter-left">
+  <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/6317cbe8f470ca2eec656d47_TAL_WHITE_TRANSPARENT%20(2).png" alt="Thin Air Labs Logo" style="width: 80px; height: auto;">
+  <span>Thin Air <span style="color: #bbb;">Labs</span></span>
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <a href="https://anshdhawann.github.io/AInewsletter-subscribe/" style="text-decoration: none; font-size: 16px; font-weight: bold; color: white;">
+      Subscribe to our <u>newsletter!</u>
+    </a>
+  </div>
+  <div style="width: 200px;"></div>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="social-links">
+      <a href="https://www.thinairlabs.ca" class="social-link" target="_blank">
+        <img src="https://img.icons8.com/ios/50/domain--v1.png" alt="Website">
+      </a>
+      <a href="https://x.com/thinair_labs" class="social-link" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/twitterx--v2.png" alt="Twitter">
+      </a>
+      <a href="https://www.linkedin.com/company/thin-air-labs/" class="social-link" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+
+    <div class="copyright">
+      © 2025 Thin Air Labs<br>
+      Suite 202 838-11th Avenue SW, Calgary, AB, T2R 0E5, Canada
+    </div>
+  </footer>
+
+  <!-- Dropdown Script -->
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdown-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function (e) {
+      const dropdown = document.querySelector('.sites-dropdown');
+      const menu = document.getElementById('dropdown-menu');
+      if (!dropdown.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+
+  <a href="#" class="back-to-top" title="Back to top">↑</a>
+
+  <script>
+  window.addEventListener('scroll', function () {
+    const btn = document.querySelector('.back-to-top');
+    btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+</script>
+
+<script>
+  const carousel = document.getElementById('infinite-carousel');
+  const leftBtn = document.getElementById('carousel-left');
+  const rightBtn = document.getElementById('carousel-right');
+
+  leftBtn.addEventListener('click', () => {
+    // Scroll by the width of one card + gap (300px + 20px)
+    carousel.scrollBy({ left: -320, behavior: 'smooth' });
+  });
+
+  rightBtn.addEventListener('click', () => {
+    // Scroll by the width of one card + gap (300px + 20px)
+    carousel.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+</script>
+
+
+  </body>
+</html>
