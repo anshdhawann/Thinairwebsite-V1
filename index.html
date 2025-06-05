@@ -349,10 +349,21 @@
   height: 20px;
 }
 
+.burger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;    
 
     /* --- Mobile Responsiveness --- */
     @media (max-width: 768px) {
 
+ .burger {
+    display: block;
+  }
+      
         /* General adjustments */
         main {
             padding: 20px; /* Reduce main padding on smaller screens */
@@ -376,7 +387,6 @@
 
         /* Header */
         header {
-            flex-direction: column; /* Stack header items vertically */
             padding: 15px 20px; /* Reduce header padding */
             align-items: flex-start; /* Align items to the left */
             gap: 15px; /* Add space between stacked header items */
@@ -384,15 +394,16 @@
 
         .header-left {
             width: 100%; /* Make logo/title full width */
-            justify-content: center; /* Center logo and text */
+            justify-content: left; 
              gap: 5px; /* Reduce space between logo and text */
         }
          .header-left img {
              height: 20px; /* Smaller logo */
              width: auto; /* Maintain aspect ratio */
          }
-         .header-left span {
-             font-size: 16px; /* Smaller header title font */
+         
+      .header-left span {
+             font-size: 0px; /* No header title font */
          }
 
 
@@ -586,7 +597,7 @@
   <header>
     <div class="header-left">
   <img src="https://cdn.prod.website-files.com/6317ac83724b6b6ca10d495a/6317cbe8f470ca2eec656d47_TAL_WHITE_TRANSPARENT%20(2).png" alt="Thin Air Labs Logo" style="width: 80px; height: auto;">
-  <span>Thin Air <span style="color: #bbb;">Labs</span></span>
+      <span>Thin Air <span style="color: #bbb;">Investments</span></span>
 </div>
 
     <nav>
