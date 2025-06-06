@@ -828,10 +828,12 @@ margin-bottom: 26px;
   }
   .portfolio-filter-buttons {
     justify-content: center; /* Center the buttons */
+    color:black;
   }
 
   .portfolio-filter-select { /* Original: select for filter */
   font-size: 14px;
+  color:black;  
 }
   
   .portfolio-section {
