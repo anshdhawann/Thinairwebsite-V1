@@ -685,7 +685,7 @@ body.no-scroll .close-menu{display:block; }
 
   /* --- Font Size Reductions --- */
   h1, .hero-title, .portfolio-title, .team-title, .media-title, .contact-title {
-    font-size: 26px !important; /* Significantly smaller main titles */
+    font-size: 28px !important; /* Significantly smaller main titles */
     margin-bottom: 0.8rem;
   }
 
